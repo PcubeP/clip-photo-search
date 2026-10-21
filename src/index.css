@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: 168 85 247; /* purple-500 */
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0a0a0b;
+  color: rgb(228 228 231);
+  font-family: theme('fontFamily.display');
+  -webkit-font-smoothing: antialiased;
+}
