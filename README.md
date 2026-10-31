@@ -38,7 +38,7 @@ Store  ──▶ IndexedDB { key, name, blob, vector }
 
 ```bash
 npm install
-npm run dev        # http://localhost:5175
+npm run dev        # http://localhost:5173
 npm run build
 ```
 

@@ -64,12 +64,15 @@ export default function App() {
           const vector = await embedImage(key, file)
           await putPhoto({ key, name: file.name, blob: file, vector })
           const url = URL.createObjectURL(file)
-          urlsRef.current.add(url)
-          setPhotos((prev) =>
-            prev.some((p) => p.key === key)
-              ? prev
-              : [...prev, { key, name: file.name, url, vector }],
-          )
+          setPhotos((prev) => {
+            if (prev.some((p) => p.key === key)) {
+              // Already present: drop the just-created URL so it doesn't leak.
+              URL.revokeObjectURL(url)
+              return prev
+            }
+            urlsRef.current.add(url)
+            return [...prev, { key, name: file.name, url, vector }]
+          })
         } catch {
           // Skip a file that fails to embed; keep indexing the rest.
         }
